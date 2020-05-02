@@ -7,22 +7,43 @@ $(document).ready(function() {
 	console.log();
 
 	//variables to create table elements//
-	var tableElement = $('<table></table>');
-	tableElement.addClass('table');
-
-	var dailyTimesArray = [ '9AM', '10AM', '11AM', '12PM', '1PM', '2PM', '3PM', '4PM', '5PM' ];
+	var tableElement = $('<table></table>').addClass("time-block table")
+	
+	var dailyTimesArray = [];
 
 	//appending elements to the table
 	$('.container').append(tableElement);
 
-	//for loop to create multiple rows
-	for (var i = 0; i < dailyTimesArray.length; i++) {
-		var trElement = $('<tr></tr>');
+	//calling function to build array//
+	workingMoments();
+	//Building HTML table//
+	dailyTimesArray.forEach(function (item, index) {
+		console.log("q", index, item);
+		var rowElement = $('<tr></tr>')
 		var tdElement = $('<td></td>');
+		var tdElementMiddle = $('<td></td>');
+		var tdElementLast = $('<td></td>');
+		var saveBtn = $("<button>Save</button>");
+
 		//creating rows and data entries//
-		tableElement.append(trElement);
-		trElement.append(tdElement);
-		tdElement.text(dailyTimesArray[i]);
-		console.log('im in here');
+		tableElement.append(rowElement);
+		rowElement.append(tdElement).addClass("hour")
+		rowElement.append(tdElementMiddle).addClass("text-block")
+		rowElement.append(tdElementLast);
+		tdElementLast.append(saveBtn).addClass("saveBtn");
+		//timeblock, buttons and input//
+		tdElement.text(item.format("hA"));
+		tdElementMiddle.text('p');
+	  });
+
+	//Building array of moments(which populates working hours)//
+	function workingMoments() {
+		for (var i = 9; i <= 17; i++) {
+			//gets moments api//
+			var m = moment();
+			//changes the hours of the moment date//
+			m.hour(i);
+			dailyTimesArray.push(m);
+		}
 	}
 });
