@@ -52,7 +52,7 @@ textarea {
 }
 
 .present {
-	background-color: #ff6961;
+	background-color: #d1504a;
 	color: black;
 }
 
@@ -65,7 +65,7 @@ textarea {
 	border-left: 1px solid black;
 	border-top-right-radius: 15px;
 	border-bottom-right-radius: 15px;
-	background-color: #06aed5;
+	background-color: #105040;
 	color: white;
 	padding: 30px;
 }
@@ -82,5 +82,5 @@ textarea {
 	height: 200px;
 	width: 800px;
 	padding-top: 25px;
-	background-color: rgb(32, 61, 52;
+	background-color: rgb(32, 61, 52);
 }
