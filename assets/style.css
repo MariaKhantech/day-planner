@@ -15,10 +15,14 @@ textarea {
 
 .jumbotron {
 	text-align: center;
-	background-color: transparent;
-	color: black;
+	background-image: url(https://images.pexels.com/photos/905318/pexels-photo-905318.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
+	/* background-position: center bottom; */
+	background-size: 100% 100%;
+	color: rgb(11, 49, 11);
 	border-radius: 0;
-	border-bottom: 10px solid black;
+	border-bottom: 10px solid rgb(32, 61, 52);
+	font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana,
+		sans-serif;
 }
 
 .description {
@@ -44,17 +48,17 @@ textarea {
 
 .past {
 	background-color: #d3d3d3;
-	color: white;
+	color: black;
 }
 
 .present {
 	background-color: #ff6961;
-	color: white;
+	color: black;
 }
 
 .future {
 	background-color: #77dd77;
-	color: white;
+	color: black;
 }
 
 .saveBtn {
@@ -63,9 +67,20 @@ textarea {
 	border-bottom-right-radius: 15px;
 	background-color: #06aed5;
 	color: white;
+	padding: 30px;
 }
 
 .saveBtn i:hover {
 	font-size: 20px;
 	transition: all .3s ease-in-out;
+}
+
+.text-block {
+	width: 100%;
+}
+.badge {
+	height: 200px;
+	width: 800px;
+	padding-top: 25px;
+	background-color: rgb(32, 61, 52;
 }
