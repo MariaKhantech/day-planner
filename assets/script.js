@@ -7,8 +7,8 @@ $(document).ready(function() {
 	console.log();
 
 	//variables to create table elements//
-	var tableElement = $('<table></table>').addClass("time-block table")
-	
+	var tableElement = $('<table></table>').addClass('time-block table');
+
 	var dailyTimesArray = [];
 
 	//appending elements to the table
@@ -17,24 +17,28 @@ $(document).ready(function() {
 	//calling function to build array//
 	workingMoments();
 	//Building HTML table//
-	dailyTimesArray.forEach(function (item, index) {
-		console.log("q", index, item);
-		var rowElement = $('<tr></tr>')
-		var tdElement = $('<td></td>');
-		var tdElementMiddle = $('<td></td>');
+	dailyTimesArray.forEach(function(momentElement, position) {
+		var getHrInteger = parseInt(momentElement.format('H'));
+		var rowElement = $('<tr></tr>');
+		var tdElement = $('<td></td>').addClass('hour');
+		var tdElementMiddle = $('<td></td>').addClass('text-block').addClass(pastPresentFuture(getHrInteger));
 		var tdElementLast = $('<td></td>');
-		var saveBtn = $("<button>Save</button>");
+		var saveBtn = $('<button>Save</button>').addClass('saveBtn');
 
 		//creating rows and data entries//
 		tableElement.append(rowElement);
-		rowElement.append(tdElement).addClass("hour")
-		rowElement.append(tdElementMiddle).addClass("text-block")
+		rowElement.append(tdElement);
+		rowElement.append(tdElementMiddle);
 		rowElement.append(tdElementLast);
-		tdElementLast.append(saveBtn).addClass("saveBtn");
-		//timeblock, buttons and input//
-		tdElement.text(item.format("hA"));
+		tdElementLast.append(saveBtn);
+
+		//timeblock, buttons and input, h is formatting for 12 hours clock A is adding AM and PM capitals//
+		tdElement.text(momentElement.format('hA'));
 		tdElementMiddle.text('p');
-	  });
+
+		//td input area used https://stackoverflow.com/questions/6012823/how-to-make-html-table-cell-editable// to find contentedible//
+		tdElementMiddle.attr('contenteditable', 'true');
+	});
 
 	//Building array of moments(which populates working hours)//
 	function workingMoments() {
@@ -44,6 +48,18 @@ $(document).ready(function() {
 			//changes the hours of the moment date//
 			m.hour(i);
 			dailyTimesArray.push(m);
+		}
+	}
+
+	// returns back whether the time is in the past present or future based on current time//
+	function pastPresentFuture(momentHour) {
+		var currentHour = m.format('H');
+		if (currentHour > momentHour) {
+			return 'past';
+		} else if (currentHour < momentHour) {
+			return 'future';
+		} else {
+			return 'present';
 		}
 	}
 });
